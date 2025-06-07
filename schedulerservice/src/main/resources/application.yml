@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: schedulerservice
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/edoti
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+
+server:
+  port: 8090
