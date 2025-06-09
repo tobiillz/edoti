@@ -1,33 +1,23 @@
-package com.idoti.schedulerservice.model;
+package com.idoti.schedulerservice.dto;
 
-import jakarta.persistence.*;
+import com.idoti.schedulerservice.model.ScheduleRecurrence;
+import com.idoti.schedulerservice.model.ScheduleStatus;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "Schedule")
 @Data
-public class Schedule {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ScheduleResponse {
+
     private Long scheduleId;
     private String title;
     private String description;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-
-    @Enumerated(EnumType.STRING)
     private ScheduleRecurrence recurrence = ScheduleRecurrence.NONE;
-
-    @Enumerated(EnumType.STRING)
     private ScheduleStatus status = ScheduleStatus.ACTIVE;
-
-    @CreationTimestamp
     private String createdBy;
-    @UpdateTimestamp
     private String modifiedBy;
     private String address;
+
 }
