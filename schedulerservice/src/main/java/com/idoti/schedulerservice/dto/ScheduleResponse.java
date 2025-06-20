@@ -16,7 +16,7 @@ public class ScheduleResponse {
     private LocalDateTime endTime;
     private ScheduleRecurrence recurrence = ScheduleRecurrence.NONE;
     private ScheduleStatus status = ScheduleStatus.ACTIVE;
-    private String createdBy;
+    private String  createdBy;
     private String modifiedBy;
     private String address;
 

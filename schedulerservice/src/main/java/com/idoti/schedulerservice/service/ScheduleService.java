@@ -1,11 +1,14 @@
 package com.idoti.schedulerservice.service;
 
+import com.idoti.schedulerservice.dto.CreateScheduleRequest;
 import com.idoti.schedulerservice.dto.ScheduleResponse;
-import com.idoti.schedulerservice.dto.createScheduleRequest;
 import com.idoti.schedulerservice.model.Schedule;
 import com.idoti.schedulerservice.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ScheduleService {
@@ -13,7 +16,7 @@ public class ScheduleService {
 
     @Autowired
     private ScheduleRepository scheduleRepository;
-    public ScheduleResponse createSchedule(createScheduleRequest request) {
+    public ScheduleResponse createSchedule(CreateScheduleRequest request) {
 
         //Logic to ensure Only one schedule exists for a set address
         if(scheduleRepository.existsByAddress(request.getAddress())){
@@ -63,6 +66,28 @@ public class ScheduleService {
         scheduleResponse.setAddress(schedule.getAddress());
 
         return scheduleResponse;
+    }
+
+    public List<ScheduleResponse> getAllScheduleDetails() {
+        return scheduleRepository.findAll()
+                .stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+    }
+
+    private ScheduleResponse mapToResponse(Schedule schedule) {
+        ScheduleResponse response = new ScheduleResponse();
+        response.setScheduleId(schedule.getScheduleId());
+        response.setTitle(schedule.getTitle());
+        response.setDescription(schedule.getDescription());
+        response.setStartTime(schedule.getStartTime());
+        response.setEndTime(schedule.getEndTime());
+        response.setStatus(schedule.getStatus());
+        response.setRecurrence(schedule.getRecurrence());
+        response.setCreatedBy(schedule.getCreatedBy());
+        response.setModifiedBy(schedule.getModifiedBy());
+        response.setAddress(schedule.getAddress());
+        return response;
     }
 }
 

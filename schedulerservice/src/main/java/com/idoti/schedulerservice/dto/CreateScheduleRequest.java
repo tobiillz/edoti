@@ -8,7 +8,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class createScheduleRequest {
+public class CreateScheduleRequest {
 
     private String title;
     private String description;

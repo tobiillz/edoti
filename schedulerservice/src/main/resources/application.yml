@@ -9,9 +9,16 @@ spring:
 
   datasource:
     url: jdbc:mysql://localhost:3306/edoti
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
 
 server:
   port: 8090
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: false
+    register-with-eureka: false
